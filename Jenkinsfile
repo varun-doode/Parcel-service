@@ -42,8 +42,8 @@ pipeline {
         
         stage('deploy') {
             steps {
-                sh 'ssh root@172.31.32.32'
-                sh "scp /home/slave1/workspace/parcelservice_feature-1/target/simple-parcel-service-app-1.0-SNAPSHOT.jar root@172.31.32.32:/opt/apache-tomcat-8.5.98/webapps/"
+                sh 'ssh root@172.31.42.29'
+                sh "scp /home/slave1/workspace/parcelservice_feature-1/target/simple-parcel-service-app-1.0-SNAPSHOT.jar root@172.31.42.29:/opt/apache-tomcat-8.5.98/webapps/"
             }
         }
         
