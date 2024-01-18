@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                sh 'rm -rf bus_booking'
+                sh 'rm -rf Parcel-service'
                 sh 'git clone https://github.com/varun-doode/Parcel-service.git'
             }
         }
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     // Run the JAR file using java -jar
-                    sh "nohup timeout 10s java -jar target/${JAR_FILE} > output.log 2>&1 &"
+                    sh "nohup timeout 10s java -jar target/simple-parcel-service-app-1.0-SNAPSHOT.jar > output.log 2>&1 &"
                     // Sleep for a while to allow the application to start (adjust as needed)
                     sleep 10
                 }
@@ -43,7 +43,7 @@ pipeline {
         stage('deploy') {
             steps {
                 sh 'ssh root@172.31.32.32'
-                sh "scp /home/slave/workspace/bus-booking-pipeline/target/bus-booking-app-1.0-SNAPSHOT.jar root@172.31.32.32:/opt/apache-tomcat-8.5.98/webapps/"
+                sh "scp /home/slave1/workspace/parcelservice_feature-1/target/simple-parcel-service-app-1.0-SNAPSHOT.jar root@172.31.32.32:/opt/apache-tomcat-8.5.98/webapps/"
             }
         }
         
